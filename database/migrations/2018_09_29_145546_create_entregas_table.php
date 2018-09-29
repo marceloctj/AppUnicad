@@ -18,9 +18,7 @@ class CreateEntregasTable extends Migration
             $table->datetime('data_entrega');
             $table->unsignedInteger('cliente_id');
             $table->string('endereco_origem');
-            $table->string('latitude_longitude_origem');
             $table->string('endereco_destino');
-            $table->string('latitude_longitude_destino');
             $table->timestamps();
             $table->foreign('cliente_id')->references('id')->on('clientes');
         });

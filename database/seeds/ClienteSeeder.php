@@ -2,6 +2,9 @@
 
 use Illuminate\Database\Seeder;
 
+use \ApiUnicad\Model\Cliente;
+use \ApiUnicad\Model\Entrega;
+
 class ClienteSeeder extends Seeder
 {
     /**
@@ -11,6 +14,8 @@ class ClienteSeeder extends Seeder
      */
     public function run()
     {
-        factory(\ApiUnicad\Model\Cliente::class, 10)->create();
+        factory(Cliente::class, 10)->create()->each(function (Cliente $cliente) {
+            $cliente->entregas()->save(factory(Entrega::class)->make());
+        });
     }
 }
