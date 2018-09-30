@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Link, Redirect} from "react-router-dom";
+import {EntregaService} from "../../../services/entrega.service";
 
 class CreateEntrega extends Component {
 
@@ -35,11 +36,7 @@ class CreateEntrega extends Component {
             endereco_destino: this.state.endereco_destino
         };
 
-        fetch("/api/entregas", {
-            method: 'POST',
-            body: JSON.stringify(formData)
-        }).then((response) => {
-
+        EntregaService.create(formData).then((response) => {
             response.json().then((responseJson) => {
                 if(response.ok) {
                     alert("Entrega cadastrada com sucesso!");
@@ -121,12 +118,18 @@ class CreateEntrega extends Component {
                         </div>
                     </div>
                     <div className="card-footer">
-                        <button className="btn btn-primary" onClick={this.handleSubmit}>
-                            Cadastrar
-                        </button>
-                        <button className="btn btn-secondary ml-3" onClick={this.handleReset}>
-                            Reset
-                        </button>
+                        <div className="row">
+                            <div className="col-6 col-sm-2">
+                                <button className="btn btn-dark btn-block" onClick={this.handleSubmit}>
+                                    Cadastrar
+                                </button>
+                            </div>
+                            <div className="col-6 col-sm-2">
+                                <button className="btn btn-outline-secondary btn-block" onClick={this.handleReset}>
+                                    Limpar Dados
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
 

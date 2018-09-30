@@ -2,9 +2,10 @@ import React, {Component} from 'react';
 import { withScriptjs, withGoogleMap, GoogleMap, DirectionsRenderer } from "react-google-maps"
 import {compose, withProps, lifecycle} from 'recompose';
 import {Link} from "react-router-dom";
+import {EntregaService} from "../../../services/entrega.service";
 
 const MAPS_KEY = 'AIzaSyB5hXWwp5vU5CTEyQlmw56y65oyD5Z-jqQ';
-const MAPS_URL = `https://maps.googleapis.com/maps/api/geocode/json?address=`;
+const MAPS_URL = `https://maps.googleapis.com/maps/api/geocode/json`;
 
 const MapWithADirectionsRenderer = compose(
     withProps({
@@ -49,41 +50,42 @@ class AbrirEntrega extends Component {
 
         this.state = {
             entrega: null,
-            loadMap: false,
             origem: null,
             destino: null
         }
     }
 
-    componentDidMount() {
-        fetch(`/api/entregas/${this.props.match.params.id}`)
+    getGeocodeInfo(endereco) {
+        return fetch(`${MAPS_URL}?address=${endereco}&key=${MAPS_KEY}`)
             .then(res => res.json())
+    }
+
+    componentDidMount() {
+
+        EntregaService.find(this.props.match.params.id)
             .then((result) => {
                 this.setState({
                     entrega: result.data
-                })
+                });
 
-                fetch(`${MAPS_URL}=${result.data.endereco_origem}&key=${MAPS_KEY}`)
-                    .then(res => res.json())
+                this.getGeocodeInfo(result.data.endereco_origem)
                     .then((response) => {
                         if(response.status === 'OK') {
                             this.setState({
                                 origem: response.results[0].geometry.location
-                            })
-
-                            fetch(`${MAPS_URL}=${result.data.endereco_destino}&key=${MAPS_KEY}`)
-                                .then(res => res.json())
-                                .then((response) => {
-                                    if(response.status === 'OK') {
-                                        this.setState({
-                                            destino: response.results[0].geometry.location,
-                                            loadMap: true
-                                        })
-                                    }
-                                });
+                            });
                         }
                     });
-            })
+
+                this.getGeocodeInfo(result.data.endereco_destino)
+                    .then((response) => {
+                        if(response.status === 'OK') {
+                            this.setState({
+                                destino: response.results[0].geometry.location
+                            })
+                        }
+                    });
+            });
     }
 
     render() {
@@ -128,7 +130,7 @@ class AbrirEntrega extends Component {
                     </div>
                 </div>
 
-                {this.state.loadMap ? (
+                {this.state.destino && this.state.origem ? (
                     <MapWithADirectionsRenderer origem={this.state.origem} destino={this.state.destino}/>
                 ) : (
                     <div className="overlay">

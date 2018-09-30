@@ -53,11 +53,13 @@ class EntregaController extends Controller
 
         $validation = $this->getValidationFactory()->make($data, [
             'cliente' => 'required',
-            'data_entrega' => 'required|date_format:Y-m-d',
+            'data_entrega' => 'required|date_format:Y-m-d|after_or_equal:today',
             'endereco_destino' => 'required',
             'endereco_origem' => 'required',
+        ], [
+            'data_entrega.after_or_equal' => 'O campo data entrega deve ser uma data superior ou igual a hoje'
         ]);
-
+gi
         if($validation->fails())
             return response()->json(['errors' => $validation->errors()], 422);
 

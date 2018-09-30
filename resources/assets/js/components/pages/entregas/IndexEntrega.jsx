@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from "react-router-dom";
+import {EntregaService} from '../../../services/entrega.service';
 
 class IndexEntrega extends Component {
 
@@ -14,8 +15,7 @@ class IndexEntrega extends Component {
     }
 
     componentDidMount() {
-        fetch("/api/entregas")
-            .then(res => res.json())
+        EntregaService.all()
             .then((result) => {
                 this.setState({
                     entregas: result.data,
@@ -36,10 +36,10 @@ class IndexEntrega extends Component {
         return (
             <div>
                 <div className="row">
-                    <div className="col-sm-10 col-12">
+                    <div className="col-sm-10 col-5">
                         <h3>Entregas</h3>
                     </div>
-                    <div className="col-sm-2 col-12">
+                    <div className="col-sm-2 col-7">
                         <Link to={'/nova'} className='btn btn-dark btn-block'>
                             <span className="fa fa-plus"/> Nova Entrega
                         </Link>

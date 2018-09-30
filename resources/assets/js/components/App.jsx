@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 import CreateEntrega from "./pages/entregas/CreateEntrega";
 import IndexEntrega from "./pages/entregas/IndexEntrega";
-import AbrirEntrega from "./pages/AbrirEntrega";
+import AbrirEntrega from "./pages/entregas/AbrirEntrega";
 
 export default class App extends Component {
     render() {
