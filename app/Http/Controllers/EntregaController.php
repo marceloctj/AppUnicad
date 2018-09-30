@@ -59,7 +59,7 @@ class EntregaController extends Controller
         ], [
             'data_entrega.after_or_equal' => 'O campo data entrega deve ser uma data superior ou igual a hoje'
         ]);
-gi
+
         if($validation->fails())
             return response()->json(['errors' => $validation->errors()], 422);
 
