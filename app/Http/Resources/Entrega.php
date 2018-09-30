@@ -16,11 +16,11 @@ class Entrega extends JsonResource
     public function toArray($request)
     {
         return [
-            'id'           => $this->id,
-            'data_entrega' => $this->data_entrega->format('d/m/Y'),
-            'cliente'      => $this->cliente->nome,
-            'origem'       => $this->endereco_origem,
-            'destino'      => $this->endereco_destino,
+            'id'               => $this->id,
+            'data_entrega'     => $this->data_entrega->format('d/m/Y'),
+            'cliente'          => $this->cliente->nome,
+            'endereco_origem'  => $this->endereco_origem,
+            'endereco_destino' => $this->endereco_destino,
         ];
     }
 }

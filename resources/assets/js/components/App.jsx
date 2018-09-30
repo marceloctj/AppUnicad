@@ -19,9 +19,9 @@ export default class App extends Component {
                     <Route path="/abrir/:id" component={AbrirEntrega} />
                 </main>
                 <footer className="footer py-4">
-                    <div className="container-fluid">
+                    <div className="container-fluid text-center">
                         <span className="text-muted">
-                             &copy; App Unica | Todos os direitos reservados
+                             &copy; Grupo Unicad | Todos os direitos reservados
                         </span>
                     </div>
                 </footer>

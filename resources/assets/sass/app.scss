@@ -41,3 +41,23 @@ label.required::after {
         display: block;
     }
 }
+
+.overlay {
+    position: fixed;
+    top:0;
+    left:0;
+    bottom:0;
+    right: 0;
+    background: rgba(220, 220, 220, 0.8);
+    z-index: 999999;
+
+    .overlay-content {
+        font-size: 20px;
+        text-align: center;
+        top: 50%;
+        position: absolute;
+        margin-top: -54px;
+        left:0;
+        right:0;
+    }
+}
