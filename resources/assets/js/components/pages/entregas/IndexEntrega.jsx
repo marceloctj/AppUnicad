@@ -39,7 +39,7 @@ class IndexEntrega extends Component {
                     <div className="col-sm-9 col-12">
                         <h3>Entregas</h3>
                     </div>
-                    <div className="col-sm-3 col-12 text-right">
+                    <div className="col-sm-2 col-12 text-right">
                         <Link to={'/nova'} className='btn btn-dark btn-block'>
                             <span className="fa fa-plus"/> Nova Entrega
                         </Link>
