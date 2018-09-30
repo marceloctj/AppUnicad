@@ -10,6 +10,8 @@ class Entrega extends Model
         'data_entrega', 'endereco_origem', 'endereco_destino'
     ];
 
+    protected $dates = ['data_entrega'];
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */

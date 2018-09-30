@@ -34,7 +34,7 @@ $enderecos = [
         'lng' => '-43.284327'
     ],
     [
-        'descricao' => 'Rua dos Inválidos, 176, Centro, Rio de Janeiro, RJ ',
+        'descricao' => 'Rua dos Inválidos, 176, Centro, Rio de Janeiro, RJ',
         'lat' => '-22.788893',
         'lng' => '-43.284327'
     ],
