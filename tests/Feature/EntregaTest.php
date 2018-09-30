@@ -34,7 +34,7 @@ class EntregaTest extends TestCase
     {
         $response = $this->postJson("api/entregas", [
             'cliente' => Str::random(10),
-            'data_entrega' => Carbon::now()->addDay(rand(1,5))->format('d/m/Y'),
+            'data_entrega' => Carbon::now()->addDay(rand(1,5))->format('Y-m-d'),
             'endereco_origem' => 'Rua Guaíra, 13, Duque de Caxias, RJ',
             'endereco_destino' => 'Rua Santa Clara, 141, Copacabana, Rio de Janeiro, RJ'
         ]);
@@ -45,7 +45,7 @@ class EntregaTest extends TestCase
     public function testCriarNovaEntregaSemCliente()
     {
         $response = $this->postJson("api/entregas", [
-            'data_entrega' => Carbon::now()->addDay(rand(1,5))->format('d/m/Y'),
+            'data_entrega' => Carbon::now()->addDay(rand(1,5))->format('Y-m-d'),
             'endereco_origem' => 'Rua Guaíra, 13, Duque de Caxias, RJ',
             'endereco_destino' => 'Rua Santa Clara, 141, Copacabana, Rio de Janeiro, RJ'
         ]);
@@ -70,7 +70,7 @@ class EntregaTest extends TestCase
     {
         $response = $this->postJson("api/entregas", [
             'cliente' => Str::random(10),
-            'data_entrega' => Carbon::now()->addDay(rand(1,5))->format('Y-m-d'),
+            'data_entrega' => Carbon::now()->addDay(rand(1,5))->format('Y'),
             'endereco_origem' => 'Rua Guaíra, 13, Duque de Caxias, RJ',
             'endereco_destino' => 'Rua Santa Clara, 141, Copacabana, Rio de Janeiro, RJ'
         ]);
@@ -83,7 +83,7 @@ class EntregaTest extends TestCase
     {
         $response = $this->postJson("api/entregas", [
             'cliente' => Str::random(10),
-            'data_entrega' => Carbon::now()->addDay(rand(1,5))->format('d/m/Y'),
+            'data_entrega' => Carbon::now()->addDay(rand(1,5))->format('Y-m-d'),
             'endereco_destino' => 'Rua Santa Clara, 141, Copacabana, Rio de Janeiro, RJ'
         ]);
 
@@ -95,7 +95,7 @@ class EntregaTest extends TestCase
     {
         $response = $this->postJson("api/entregas", [
             'cliente' => Str::random(10),
-            'data_entrega' => Carbon::now()->addDay(rand(1,5))->format('d/m/Y'),
+            'data_entrega' => Carbon::now()->addDay(rand(1,5))->format('Y-m-d'),
             'endereco_origem' => 'Rua Guaíra, 13, Duque de Caxias, RJ',
         ]);
 
