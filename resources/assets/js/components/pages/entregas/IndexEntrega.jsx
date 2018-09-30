@@ -27,7 +27,7 @@ class IndexEntrega extends Component {
     handleSearch(e) {
         this.setState({
             entregas_filtradas: this.state.entregas.filter((item) => {
-                return item.cliente.indexOf(e.target.value) >= 0;
+                return item.cliente.toLowerCase().indexOf(e.target.value.toLowerCase()) >= 0;
             })
         });
     }
@@ -36,21 +36,19 @@ class IndexEntrega extends Component {
         return (
             <div>
                 <div className="row">
-                    <div className="col-9">
+                    <div className="col-sm-9 col-12">
                         <h3>Entregas</h3>
                     </div>
-                    <div className="col-3 text-right">
-                        <Link to={'/nova'} className='btn btn-dark'>
-                    <span className="fa fa-plus">
-                    </span>
-                            &nbsp;Nova Entrega
+                    <div className="col-sm-3 col-12 text-right">
+                        <Link to={'/nova'} className='btn btn-dark btn-block'>
+                            <span className="fa fa-plus"/> Nova Entrega
                         </Link>
                     </div>
                 </div>
 
                 <div className="row mt-3">
                     <div className="col-12">
-                        <input type='text' onKeyUp={this.handleSearch} className="form-control" placeholder="Buscar por Cliente"/>
+                        <input type='text' onKeyUp={this.handleSearch} className="form-control" placeholder="Buscar por nome do cliente"/>
                     </div>
                 </div>
 
